@@ -11,7 +11,7 @@ const get = require('dlv')
 * @param {Boolean} [options.noWarn] log warn when fileList constructor name is not 'FileList'
 */
 module.exports = async function * fileListSource (fileList, options = {}) {
-  if (!options.noWarn && get(fileList, 'constructor.name') !== 'FileList') {
+  if (get(fileList, 'constructor.name') !== 'FileList' && !options.noWarn) {
     console.warn('fileList.constructor.name was not equal to FileList.')
   }
   // Check the input paths comply with options.recursive and convert to glob sources
