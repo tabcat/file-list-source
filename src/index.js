@@ -16,11 +16,12 @@ module.exports = async function * fileListSource (fileList, options = {}) {
   }
   // Check the input paths comply with options.recursive and convert to glob sources
   for await (const file of Object.values(fileList)) {
-    if (typeof file.webkitRelativePath !== 'string') {
+    const filePath = file.webkitRelativePath || file.name
+    if (typeof filePath !== 'string') {
       throw errCode(
         new Error('Path must be a string'),
         'ERR_INVALID_PATH',
-        { path: file.webkitRelativePath }
+        { path: filePath }
       )
     }
 
@@ -33,7 +34,7 @@ module.exports = async function * fileListSource (fileList, options = {}) {
     }
 
     yield {
-      path: toPosix(file.webkitRelativePath),
+      path: toPosix(filePath),
       content: file,
       mode,
       mtime
