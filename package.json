@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "similar to ipfs-utils/src/files/glob-source but for FileList",
   "main": "src/index.js",
+  "files": [
+    "/src"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
