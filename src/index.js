@@ -9,6 +9,7 @@ const get = require('dlv')
 * @param {FileList} fileList instance of FileList https://developer.mozilla.org/en-US/docs/Web/API/FileList
 * @param {Object} [options] optionally set options
 * @param {Boolean} [options.noWarn] log warn when fileList constructor name is not 'FileList'
+* @param {Boolean} [options.preserveMtime] preserve the files mtime
 */
 module.exports = async function * fileListSource (fileList, options = {}) {
   if (get(fileList, 'constructor.name') !== 'FileList' && !options.noWarn) {
