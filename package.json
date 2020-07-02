@@ -1,6 +1,6 @@
 {
   "name": "@tabcat/file-list-source",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "similar to ipfs-utils/src/files/glob-source but for FileList",
   "main": "src/index.js",
   "files": [
