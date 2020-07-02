@@ -17,7 +17,7 @@ module.exports = async function * fileListSource (fileList, options = {}) {
   }
   // Check the input paths comply with options.recursive and convert to glob sources
   for await (const file of Object.values(fileList)) {
-    const filePath = file.webkitRelativePath || file.name
+    const filePath = file.webkitRelativePath || file.path || file.mozFullPath || file.name
     if (typeof filePath !== 'string') {
       throw errCode(
         new Error('Path must be a string'),
