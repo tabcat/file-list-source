@@ -31,7 +31,13 @@ module.exports = async function * fileListSource (fileList, options = {}) {
     let mtime = options.mtime
 
     if (options.preserveMtime) {
-      mtime = file.lastModified || Date.parse(file.lastModifiedDate)
+      const time = file.lastModified || Date.parse(file.lastModifiedDate)
+      if (time) {
+        mtime = {
+          secs: Number(time.toString().slice(0, -3)),
+          nsecs: Number(time.toString().slice(-3))
+        }
+      } else if (!options.noWarn) console.warn('no time properties found')
     }
 
     yield {
